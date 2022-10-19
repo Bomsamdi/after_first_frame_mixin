@@ -1,6 +1,6 @@
 name: after_first_frame_mixin
 description: Brings functionality to execute code after the first layout of a widget has been performed, i.e. after the first frame has been displayed.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Bomsamdi/after_first_frame_mixin
 
 environment:
