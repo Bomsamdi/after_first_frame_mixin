@@ -1,39 +1,74 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# AFTER FIRST FRAME MIXIN
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Brings functionality to execute code after the first layout of a widget has been performed, i.e. after the first frame has been displayed.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+ This demo showcases how this package resolves the shortcomings shown above:
+ ```dart
+ import 'dart:async';
 
-```dart
-const like = 'sample';
-```
+ import 'package:after_first_frame_mixin/after_first_frame_mixin.dart';
+ import 'package:flutter/material.dart';
 
-## Additional information
+ void main() => runApp(const MyApp());
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+ @immutable
+ class MyApp extends StatelessWidget {
+   const MyApp({Key? key}) : super(key: key);
+
+   @override
+   Widget build(BuildContext context) {
+     return const MaterialApp(
+       title: 'Example',
+       home: HomeScreen(),
+     );
+   }
+ }
+
+ @immutable
+ class HomeScreen extends StatefulWidget {
+   const HomeScreen({Key? key}) : super(key: key);
+
+   @override
+   HomeScreenState createState() => HomeScreenState();
+ }
+
+ class HomeScreenState extends State<HomeScreen>
+     with AfterFirstFrameMixin<HomeScreen> {
+   @override
+   Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: const Center(
+          child: Text("Example"),
+        ),
+      ),
+    );
+   }
+
+   void showHelloWorld() {
+     showDialog(
+       context: context,
+       builder: (BuildContext context) {
+         return AlertDialog(
+           content: const Text('Hello World'),
+           actions: <Widget>[
+             TextButton(
+               onPressed: () => Navigator.of(context).pop(),
+               child: const Text('DISMISS'),
+             )
+           ],
+         );
+       },
+     );
+   }
+
+   @override
+   FutureOr<void> afterFirstFrame(BuildContext context) {
+     showHelloWorld();
+   }
+ }
+ ```
