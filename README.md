@@ -3,6 +3,7 @@
 [![Pub Version](https://img.shields.io/pub/v/after_first_frame_mixin)](https://pub.dev/packages/after_first_frame_mixin)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![pub points](https://img.shields.io/pub/points/after_first_frame_mixin)](https://pub.dev/packages/after_first_frame_mixin/score)
+[![likes](https://img.shields.io/pub/likes/after_first_frame_mixin)](https://pub.dev/packages/after_first_frame_mixin/score)
 
 Run code after the first layout of a widget has been performed, i.e. after the
 first frame has been displayed.
